@@ -1,88 +1,83 @@
 # Code Printer
 
-Code Printer is a command-line tool that helps you copy and paste code from your project files into AI chat conversations. It generates a text file containing the folder hierarchy and the contents of text-based files in your project directory.
+Code Printer is a utility designed to help developers quickly and efficiently copy and paste code in AI chat environments. This tool traverses directories, processes files, and outputs their content in a clean and readable format, making it easier to share code snippets during conversations.
 
 ## Features
 
-- Generates a folder hierarchy tree of your project directory
-- Includes the contents of text-based files in the output
-- Ignores files and directories based on predefined rules and .gitignore
-- Supports cross-platform builds for M1 Mac, x64 Windows, and x64 Linux
+- Traverses directories and processes files, respecting `.gitignore` rules.
+- Ignores files based on configurable suffixes and names.
+- Builds for multiple platforms (macOS M1, Windows x64, Linux x64).
+- Outputs the directory structure and file content in a readable format.
 
-## Prerequisites
+## Getting Started
 
-- Go programming language (version 1.16 or later)
+### Prerequisites
 
-## Installation
+- [Go](https://golang.org/doc/install) installed on your machine.
+- A Unix-like shell (e.g., bash) for running the build script.
 
-1. Clone the repository:
+### Installing Dependencies
 
-   ```
-   git clone https://github.com/your-username/code-printer.git
-   ```
+The project uses Go modules for dependency management, and the dependencies are specified in the `go.mod` and `go.sum` files.
 
-2. Change to the project directory:
+To install the dependencies, run the following command:
 
-   ```
-   cd code-printer
-   ```
+```sh
+go mod tidy
+```
 
-3. Initialize the Go module and download dependencies:
+This will download and install the necessary dependencies as specified in the `go.mod` file.
 
-   ```
-   go mod init github.com/your-username/code-printer
-   go mod tidy
-   ```
+### Building the Project
 
-   Make sure to replace `github.com/your-username/code-printer` with your actual repository path.
+The `build.sh` script is provided to build the project for different platforms. Follow these steps to build the project:
 
-4. Review the `main.go` file to understand how the project is structured and how to customize it if needed.
+1. Ensure the `build.sh` script has execute permissions. If not, you can set it using:
 
-5. Run the build script:
+    ```sh
+    chmod +x build.sh
+    ```
 
-   ```
-   ./build.sh
-   ```
+2. Run the build script to generate executables for macOS M1, Windows x64, and Linux x64:
 
-   This will generate the executable files for different platforms in the `bin` directory.
+    ```sh
+    ./build.sh
+    ```
 
-## Usage
+### Running the Program
 
-1. Navigate to your project directory:
+To run the Code Printer, use the following command:
 
-   ```
-   cd /path/to/your/project
-   ```
+```sh
+./bin/codeprinter-mac-arm64 -output output.txt
+```
 
-2. Run the Code Printer tool:
+Replace `codeprinter-mac-arm64` with the appropriate binary for your platform.
 
-   ```
-   /path/to/code-printer/bin/codeprinter
-   ```
+### Command-line Options
 
-   By default, the output will be written to a file named `output.txt` in the current directory.
+- `-output`: Specify the name of the output file. Default is `output.txt`.
 
-   You can specify a different output file name using the `-output` flag:
+### Example
 
-   ```
-   /path/to/code-printer/bin/codeprinter -output myoutput.txt
-   ```
+```sh
+./bin/codeprinter-mac-arm64 -output output.txt
+```
 
-3. The generated output file will contain the folder hierarchy tree and the contents of text-based files in your project directory.
-
-## Configuration
-
-Code Printer automatically ignores certain files and directories based on predefined rules and the `.gitignore` file in your project directory.
-
-- Predefined ignored file suffixes: `.lock`, `.conf`, `.config`, `.ini`, `.log`, `.tmp`, `.cache`, `.mod`, `.sum`
-- Predefined ignored file names: `package-lock.json`, `yarn.lock`, `composer.lock`, `Gemfile.lock`, `Cargo.lock`, `Pipfile.lock`, `poetry.lock`, `mix.lock`
-- Hidden files and directories (starting with `.`) are also ignored
-- Files and directories specified in the `.gitignore` file are ignored
+The program will traverse the current directory, process the files, and write the output to `output.txt`.
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
 
 ## License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
+
+## Acknowledgements
+
+- [go-gitignore](https://github.com/sabhiram/go-gitignore) for handling `.gitignore` rules.
