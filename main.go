@@ -103,7 +103,8 @@ func shouldIgnoreFile(filename string) bool {
 
 	ignoreNames := []string{
 		"package-lock.json", "yarn.lock", "composer.lock", "Gemfile.lock",
-		"Cargo.lock", "Pipfile.lock", "poetry.lock", "mix.lock",
+		"Cargo.lock", "Pipfile.lock", "poetry.lock", "mix.lock", "LICENSE",
+		"README", "CHANGELOG", "CONTRIBUTING", "AUTHORS", "CONTRIBUTORS", "CODE_OF_CONDUCT",
 	}
 
 	for _, name := range ignoreNames {
