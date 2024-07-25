@@ -95,10 +95,13 @@ func initCPIgnore(dir string) error {
 			return err
 		}
 		defer file.Close()
+	} else if err != nil {
+		return err
+	}
 
 		defaultRules := []string{
 			// Version control
-			".git", ".svn", ".hg", ".bzr", "CVS",
+			".git", ".svn", ".hg", ".bzr", "CVS", ".hcl",
 
 			// Dependencies and package managers
 			"node_modules", "bower_components", "jspm_packages", "packages",
