@@ -17,7 +17,7 @@ import (
 var outputFileName string
 
 func main() {
-	flag.StringVar(&outputFileName, "output", "codebase.txt", "Output file name")
+	flag.StringVar(&outputFileName, "output", "codebase.md", "Output file name")
 	flag.Parse()
 
 	currentDir, err := os.Getwd()
@@ -141,8 +141,9 @@ func processFile(filePath, currentDir string, writer *bufio.Writer) error {
 			return -1
 		}, string(fileContent))
 
+		writer.WriteString("```\n")
 		writer.WriteString(cleanedContent)
-		writer.WriteString("\n\n")
+		writer.WriteString("\n```\n\n")
 	}
 	return nil
 }
@@ -197,7 +198,13 @@ func writeFolderTree(dir string, writer *bufio.Writer) error {
 	if err != nil {
 		return err
 	}
-	writer.WriteString(string(output))
+	// Convert tree output to Markdown format
+	lines := strings.Split(string(output), "\n")
+	for _, line := range lines {
+		if strings.TrimSpace(line) != "" {
+			writer.WriteString("- " + line + "\n")
+		}
+	}
 	return nil
 }
 
