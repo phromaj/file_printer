@@ -98,6 +98,7 @@ func initCPIgnore(dir string) error {
 	} else if err != nil {
 		return err
 	}
+}
 
 		defaultRules := []string{
 			// Version control
