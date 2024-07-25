@@ -95,18 +95,14 @@ func initCPIgnore(dir string) error {
 			return err
 		}
 		defer file.Close()
-	} else if err != nil {
-		return err
-	}
-}
 
 		defaultRules := []string{
 			// Version control
-			".git", ".svn", ".hg", ".bzr", "CVS", ".hcl",
+			".git", ".svn", ".hg", ".bzr", "CVS", "*.hcl",
 
 			// Dependencies and package managers
 			"node_modules", "bower_components", "jspm_packages", "packages",
-			"vendor", ".vendor", "*.sum", // Added *.sum here
+			"vendor", ".vendor", "*.sum",
 			".venv", "venv", "env", ".env",
 			"__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache",
 			"pip-wheel-metadata", ".pnpm-store",
@@ -171,7 +167,10 @@ func initCPIgnore(dir string) error {
 				return err
 			}
 		}
+	} else if err != nil {
+		return err
 	}
+	// If .cpignore already exists, we don't modify it
 	return nil
 }
 
