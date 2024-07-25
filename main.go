@@ -98,7 +98,6 @@ func initCPIgnore(dir string) error {
 	} else if err != nil {
 		return err
 	}
-	return nil
 }
 
 		defaultRules := []string{
