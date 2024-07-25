@@ -17,7 +17,7 @@ import (
 var outputFileName string
 
 func main() {
-	flag.StringVar(&outputFileName, "output", "output.txt", "Output file name")
+	flag.StringVar(&outputFileName, "output", "codebase.txt", "Output file name")
 	flag.Parse()
 
 	currentDir, err := os.Getwd()
